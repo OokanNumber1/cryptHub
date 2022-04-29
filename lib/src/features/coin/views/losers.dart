@@ -1,27 +1,35 @@
+import 'package:crypthub/src/constants/cmc_new_response.dart';
 import 'package:crypthub/src/features/coin/viewmodels/coin_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'coin_details_view.dart';
+
 Expanded losersView() {
-  return const Expanded(
-    child: Text('Top Losers'),
-    /*
-    child: Consumer(
-      builder: (context, ref, child) {
-        final losersProvider = ref.watch(losersViewmodel);
-        return losersProvider.when(
-          data: (coinList) => ListView.builder(
-              itemCount: coinList.length,
-              itemBuilder: (_, index) => ListTile(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    title: Text(coinList[index].name),
-                  )),
-          error: (error, stck) => Text('$error'),
-          loading: () => const CircularProgressIndicator(),
-        );
-      },
-    ),*/
-  );
+  return Expanded(child: Consumer(
+    builder: (context, ref, child) {
+      //final losersProvider = ref.watch(losersLocalVM);
+      final losersProvider = ref.watch(losersViewmodel);
+      return losersProvider.when(
+        data: (loserList) => ListView.builder(
+          itemCount: loserList.length,
+          itemBuilder: (context, index) => ListTile(
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => TokenDetails(coin: loserList[index]),)),
+            title: Text(loserList[index].name),
+            trailing: Text(
+              loserList[index].change24.toStringAsFixed(3) + '%',
+              style: TextStyle(
+                  color: loserList[index].change24 > 0
+                      ? Colors.green
+                      : Colors.red),
+            ),
+          ),
+        ),
+        error: (error, stackTrace) =>
+            Center(child: Text('Error $error occurred')),
+        loading: () => const Center(child: CircularProgressIndicator()),
+      );
+    },
+  )
+      );
 }

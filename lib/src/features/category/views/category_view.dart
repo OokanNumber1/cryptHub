@@ -24,7 +24,7 @@ class CategoryChip extends ConsumerWidget {
           height: MediaQuery.of(context).size.height * 0.12,
           child: ListView.separated(
             separatorBuilder: (context, index) => const SizedBox(
-              width: 20,
+              width: 10,
             ),
             scrollDirection: Axis.horizontal,
             itemCount: categoryList.length,
@@ -33,10 +33,24 @@ class CategoryChip extends ConsumerWidget {
                   //ref.watch(categoryViewmodel.notifier).changeIndex(index),
                   ref.read(categoryViewmodel.notifier).changeIndex(index),
               child: Chip(
-                label: Text(
-                  categoryList[index].chipText,
-                  style: const TextStyle(color: Colors.white),
+                label: Row(
+                  children: [
+                    Text(
+                      categoryList[index].chipText,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    // categoryList[index] != categoryEnum.allCoins ? DropdownButton<String>(items: const[
+                    //   DropdownMenuItem(child: Text('24hr')), //DropdownMenuItem(child: Text('7d'))
+                    // ], onChanged:(value) {
+
+                    // },) :const SizedBox()
+                  ],
                 ),
+                /*
+                DropdownButton<String>(items: [
+                  DropdownMenuItem(child: Text(categoryList[index].chipText,style: const TextStyle(color: Colors.white),))
+                ], onChanged: (newValue) {}),
+                */
                 backgroundColor: categoryNotifier == index
                     ? const Color(0xff0000ff)
                     : const Color(0xff000000),

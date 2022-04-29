@@ -21,3 +21,6 @@ class NavBarViewModel extends StateNotifier<int> {
     state = index;
   }
 }
+
+final navBarProvider =
+    StateNotifierProvider<NavBarViewModel, int>((ref) => NavBarViewModel());

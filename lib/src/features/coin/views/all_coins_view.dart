@@ -5,14 +5,15 @@ import 'package:crypthub/src/features/favourites/viewmodel/favourite_viewmodel.d
 //import 'package:crypthub/src/features/favourites/viewmodel/favourite_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 Expanded allCoinsView() {
+  final formatter = NumberFormat.decimalPattern();
   return Expanded(
     child: Consumer(
       builder: (context, ref, child) {
-        final favProvR = ref.read(favouriteProvider.notifier);
-        final favProvW = ref.watch(favouriteProvider.notifier);
-        final allCoinProvider = ref.watch(allCoinLocalVM);
+        //final allCoinProvider = ref.watch(allCoinLocalVM);
+        final allCoinProvider = ref.watch(allCoinViewmodel);
         return allCoinProvider.when(
           data: (coinList) => ListView.builder(
               itemCount: cmcListing['data'].length,
@@ -35,7 +36,8 @@ Expanded allCoinsView() {
                       title: Text(coinList[index].name),
                       subtitle: Row(
                         children: [
-                          Text('\$${coinList[index].price.toStringAsFixed(2)}'),
+                          Text(
+                              '\$${formatter.format((coinList[index].price))}'),
                         ],
                       ),
                       trailing: Column(
@@ -44,34 +46,41 @@ Expanded allCoinsView() {
                           Text(coinList[index].symbol),
                           GestureDetector(
                             onTap: () {
+                              print('INU WIDGET ===>>> ${coinList[index]}');
                               ref
                                   .read(favouriteChangeViewmodel)
+                                  //.read(favouriteProvider.notifier)
                                   .favouriteAction(coinList[index]);
                               //favProvR.favouriteAction(coinList[index]);
                               // ref
                               //     .read(favouriteProvider.notifier)
                               //     .favouriteAction(coinList[index]);
                             },
-                            child: Icon(ref
-                                        .watch(favouriteChangeViewmodel)
-                                        .favouriteSet
-                                        .contains(coinList[index])
-                                    ? Icons.favorite
-                                    : Icons.favorite_border
-                                // favProvW.favouriteList.contains(coinList[index])
-                                //     ? Icons.favorite
-                                //     : Icons.favorite_border
+                            child: Icon(
+                              ref
+                                      .watch(favouriteChangeViewmodel).favouriteLclList!
+                                      .contains(coinList[index])
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: ref
+                                      .watch(favouriteChangeViewmodel).favouriteLclList!
+                                      .contains(coinList[index])
+                                  ? Colors.blue
+                                  : Colors.grey,
+                              // favProvW.favouriteList.contains(coinList[index])
+                              //     ? Icons.favorite
+                              //     : Icons.favorite_border
 
-                                // ref
-                                //         .read(favouriteProvider.notifier)
-                                //         .favouriteList
-                                //         .contains(coinList[index])
-                                //     ? Icons.favorite
-                                //     : Icons.favorite_border,
-                                // color: coinList[index].isFavourite
-                                //     ? Colors.yellow
-                                //     : Colors.transparent,
-                                ),
+                              // ref
+                              //         .read(favouriteProvider.notifier)
+                              //         .favouriteList
+                              //         .contains(coinList[index])
+                              //     ? Icons.favorite
+                              //     : Icons.favorite_border,
+                              // color: coinList[index].isFavourite
+                              //     ? Colors.yellow
+                              //     : Colors.transparent,
+                            ),
                           )
                         ],
                       ),
