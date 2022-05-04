@@ -1,4 +1,4 @@
-import 'package:crypthub/src/features/favourites/viewmodel/favourite_viewmodel.dart';
+import 'package:crypto_suggest/src/features/favourites/viewmodel/favourite_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

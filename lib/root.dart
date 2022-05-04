@@ -1,24 +1,25 @@
-import 'package:crypthub/src/constants/app_strings.dart';
-import 'package:crypthub/src/features/bottom_nav_bar/viewmodels/nav_bar_viewmodel.dart';
-import 'package:crypthub/src/features/bottom_nav_bar/widgets/bottom_nav_bar.dart';
-import 'package:crypthub/src/features/favourites/viewmodel/favourite_viewmodel.dart';
-import 'package:crypthub/src/features/floating_action_button/widgets/floating_action_button.dart';
+import 'package:crypto_suggest/src/constants/app_strings.dart';
+import 'package:crypto_suggest/src/features/bottom_nav_bar/viewmodels/nav_bar_viewmodel.dart';
+import 'package:crypto_suggest/src/features/bottom_nav_bar/widgets/bottom_nav_bar.dart';
+import 'package:crypto_suggest/src/features/favourites/viewmodel/favourite_viewmodel.dart';
+import 'package:crypto_suggest/src/features/floating_action_button/widgets/floating_action_button.dart';
+import 'package:crypto_suggest/src/features/onboard_and_splash/view/onboard_and_splash_screen.dart';
+import 'package:crypto_suggest/src/features/onboard_and_splash/viewmodel/onboard_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'src/features/dapp/views/dapp_view.dart';
 import 'src/features/favourites/views/favourites_view.dart';
 import 'src/features/home/views/home_view.dart';
-import 'package:crypthub/src/constants/app_dimensions.dart';
 import 'src/features/discover/views/discover_view.dart';
 
-class Root extends StatelessWidget {
+class Root extends ConsumerWidget {
   const Root({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyRoot(),
+      home: ref.watch(onboardProvider).onboardViewed ? const MyRoot() : const OnboardView(),
       title: AppStrings.appName,
     );
   }
@@ -53,7 +54,7 @@ ref.read(favouriteChangeViewmodel).getfavouriteList();
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: const MyFAB(),
-        bottomNavigationBar: const BottomNavBar());
+        bottomNavigationBar: const BottomNavBar(),);
   }
 }
 

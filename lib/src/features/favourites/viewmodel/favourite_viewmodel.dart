@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:crypthub/src/features/coin/model/cmc_token.dart';
-import 'package:crypthub/src/features/coin/viewmodels/coin_viewmodel.dart';
+import 'package:crypto_suggest/src/features/coin/model/cmc_token.dart';
+import 'package:crypto_suggest/src/features/coin/viewmodels/coin_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -68,14 +68,17 @@ final favouriteProvider =
 
 class FavouriteChangeNotifier extends ChangeNotifier {
   final favLocalStorage = localStorage;
+  //final favLocalStorage = prefStorage;
   late List<CmcToken>? favouriteLclList;
+
   List<CmcToken>? getfavouriteList() {
     var fromLcl =  localStorage.read(key: 'favKey') ;
+    //final fromLcl =  prefStorage.read(key: 'favKey') ;
     if (fromLcl != null) {
        List decoded = fromLcl;
       favouriteLclList =
          decoded.map((token) => CmcToken.fromLocal(token)).toList();
-          print('favouriteLclList ===>>>>>>======>>> $favouriteLclList');
+          //print('favouriteLclList ===>>>>>>======>>> $favouriteLclList');
       return favouriteLclList;
     }
     favouriteLclList = [];

@@ -1,4 +1,4 @@
-import 'package:crypthub/src/features/category/views/category_view.dart';
+import 'package:crypto_suggest/src/features/category/views/category_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {

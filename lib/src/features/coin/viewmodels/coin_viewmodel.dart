@@ -4,10 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-import 'package:crypthub/src/constants/app_strings.dart';
-import 'package:crypthub/src/features/coin/model/cmc_token.dart';
-import 'package:crypthub/src/services/http_service.dart';
-import 'package:crypthub/src/services/storage_service.dart';
+import 'package:crypto_suggest/src/constants/app_strings.dart';
+import 'package:crypto_suggest/src/features/coin/model/cmc_token.dart';
+import 'package:crypto_suggest/src/services/http_service.dart';
+import 'package:crypto_suggest/src/services/storage_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /*
 final allCoinLocalVM = FutureProvider<List<CmcToken>>((ref) {
@@ -22,7 +23,8 @@ final losersLocalVM = FutureProvider<List<CmcToken>>(
 
 
 final localStorage = LocalStorage(storage: GetStorage());
-
+//final prefStorage = LocalStoragePrefs();
+///*
 const tokensKey = 'tokens';
 final allCoinViewmodel = FutureProvider<List<CmcToken>>((ref) async {
   if (await InternetConnectionChecker().hasConnection) {
@@ -31,6 +33,7 @@ final allCoinViewmodel = FutureProvider<List<CmcToken>>((ref) async {
     );
 
     await localStorage.save(key: tokensKey, value: allToken);
+    //await prefStorage.save(key: tokensKey, value: allToken);
 
     List<CmcToken> serialisedList =
         allToken.map((token) => CmcToken.fromJson(token)).toList();
@@ -38,6 +41,7 @@ final allCoinViewmodel = FutureProvider<List<CmcToken>>((ref) async {
     return serialisedList;
   } else {
     final lclToken = await localStorage.read(key: tokensKey);
+    //final lclToken = await prefStorage.read(key: tokensKey);
 
     List storageList = lclToken.toList();
     List<CmcToken> strList =
@@ -59,6 +63,7 @@ final gainersViewmodel = FutureProvider((ref) async {
     return gainerList.reversed.toList();
   } else {
     final lclToken = await localStorage.read(key: tokensKey);
+    //final lclToken = await prefStorage.read(key: tokensKey);
     List storageList = lclToken.toList();
     List<CmcToken> strList =
         storageList.map((e) => CmcToken.fromJson(e)).toList();
@@ -83,6 +88,7 @@ final losersViewmodel = FutureProvider((ref) async {
     return loserList;
   } else {
     final losers = await localStorage.read(key: tokensKey) as List;
+    //final losers = await prefStorage.read(key: tokensKey);
 
     List<CmcToken> lslst = losers.map((e) => CmcToken.fromJson(e)).toList();
     lslst.sort((a, b) => a.change24.compareTo(b.change24));
@@ -92,3 +98,4 @@ final losersViewmodel = FutureProvider((ref) async {
 });
 
 
+//*/

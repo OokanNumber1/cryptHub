@@ -1,7 +1,7 @@
-import 'package:crypthub/src/features/category/viewmodel/category_viewmodel.dart';
-import 'package:crypthub/src/features/coin/views/all_coins_view.dart';
-import 'package:crypthub/src/features/coin/views/gainers.dart';
-import 'package:crypthub/src/features/coin/views/losers.dart';
+import 'package:crypto_suggest/src/features/category/viewmodel/category_viewmodel.dart';
+import 'package:crypto_suggest/src/features/coin/views/all_coins_view.dart';
+import 'package:crypto_suggest/src/features/coin/views/gainers.dart';
+import 'package:crypto_suggest/src/features/coin/views/losers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

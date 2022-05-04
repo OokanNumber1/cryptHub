@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:crypthub/src/constants/cmc_new_response.dart';
-import 'package:crypthub/src/features/coin/model/cmc_token.dart';
+import 'package:crypto_suggest/src/constants/cmc_new_response.dart';
+import 'package:crypto_suggest/src/features/coin/model/cmc_token.dart';
 import 'package:http/http.dart' as http;
 
 abstract class NetworkAbstract {
@@ -10,7 +10,7 @@ abstract class NetworkAbstract {
   );
 }
 enum TokenForms { all, losers, gainers }
-
+///*
 class HttpService implements NetworkAbstract {
   @override
   Future<dynamic> get(
@@ -22,7 +22,8 @@ class HttpService implements NetworkAbstract {
     return decodedResponse['data'];
   }
   }
-  
+  //*/
+
 /*
     List<CmcToken> responseList =
         dataedResponse.map((e) => CmcToken.fromJson(e)).toList();

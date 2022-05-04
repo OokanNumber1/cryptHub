@@ -1,5 +1,5 @@
-import 'package:crypthub/src/features/coin/model/cmc_token.dart';
-import 'package:crypthub/src/features/coin/viewmodels/coin_viewmodel.dart';
+import 'package:crypto_suggest/src/features/coin/model/cmc_token.dart';
+import 'package:crypto_suggest/src/features/coin/viewmodels/coin_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';

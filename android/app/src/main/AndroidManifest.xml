@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.crypthub">
    <application
-        android:label="crypthub"
+        android:label="Crypto Suggest"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
