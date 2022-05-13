@@ -66,7 +66,7 @@ class SearchDialog extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => TokenDetails(
-                                      coin: searchController.text.isEmpty
+                                      token: searchController.text.isEmpty
                                           ? allCoinList[index]
                                           : suggestedSearchTokens[index]))),
                           title: Text(searchController.text.isEmpty
@@ -114,7 +114,7 @@ class CustomSearchDelegate extends SearchDelegate<CmcToken> {
     return ListView.builder(
       itemBuilder: (context, index) => ListTile(
         title: Text(resultSearchTokens[index].name),
-        onTap: () => TokenDetails(coin: resultSearchTokens[index]),
+        onTap: () => TokenDetails(token: resultSearchTokens[index]),
       ),
       itemCount: resultSearchTokens.length,
     );
@@ -145,7 +145,7 @@ class CustomSearchDelegate extends SearchDelegate<CmcToken> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => TokenDetails(
-                                coin: query.isEmpty
+                                token: query.isEmpty
                                     ? allCoinList[index]
                                     : suggestedSearchTokens[index]))),
                     title: Text(query.isEmpty

@@ -1,7 +1,7 @@
 import 'package:crypto_suggest/src/features/favourites/viewmodel/favourite_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 class FavouritesView extends StatelessWidget {
   const FavouritesView({Key? key}) : super(key: key);
 

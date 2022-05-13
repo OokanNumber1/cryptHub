@@ -7,6 +7,7 @@ import 'package:crypto_suggest/src/features/onboard_and_splash/view/onboard_and_
 import 'package:crypto_suggest/src/features/onboard_and_splash/viewmodel/onboard_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'src/features/dapp/views/dapp_view.dart';
 import 'src/features/favourites/views/favourites_view.dart';
 import 'src/features/home/views/home_view.dart';
@@ -17,10 +18,13 @@ class Root extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ref.watch(onboardProvider).onboardViewed ? const MyRoot() : const OnboardView(),
-      title: AppStrings.appName,
+    return  ScreenUtilInit(
+      designSize: const Size(720, 1080),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: ref.watch(onboardProvider).onboardViewed ? const MyRoot() : const OnboardView(),
+        title: AppStrings.appName,
+      ),
     );
   }
 }

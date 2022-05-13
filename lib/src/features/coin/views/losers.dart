@@ -11,17 +11,20 @@ Expanded losersView() {
       //final losersProvider = ref.watch(losersLocalVM);
       final losersProvider = ref.watch(losersViewmodel);
       return losersProvider.when(
-        data: (loserList) => ListView.builder(
-          itemCount: loserList.length,
-          itemBuilder: (context, index) => ListTile(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => TokenDetails(coin: loserList[index]),)),
-            title: Text(loserList[index].name),
-            trailing: Text(
-              loserList[index].change24.toStringAsFixed(3) + '%',
-              style: TextStyle(
-                  color: loserList[index].change24 > 0
-                      ? Colors.green
-                      : Colors.red),
+        data: (loserList) => RefreshIndicator(
+          onRefresh: ()=>ref.refresh(losersViewmodel.future),
+          child: ListView.builder(
+            itemCount: loserList.length,
+            itemBuilder: (context, index) => ListTile(
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => TokenDetails(token: loserList[index]),)),
+              title: Text(loserList[index].name),
+              trailing: Text(
+                loserList[index].change24.toStringAsFixed(3) + '%',
+                style: TextStyle(
+                    color: loserList[index].change24 > 0
+                        ? Colors.green
+                        : Colors.red),
+              ),
             ),
           ),
         ),

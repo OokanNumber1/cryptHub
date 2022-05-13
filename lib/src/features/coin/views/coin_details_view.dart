@@ -3,12 +3,13 @@ import 'package:crypto_suggest/src/features/coin/viewmodels/coin_viewmodel.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TokenDetails extends ConsumerWidget {
-  const TokenDetails({Key? key, required this.coin}) : super(key: key);
+  const TokenDetails({Key? key, required this.token}) : super(key: key);
   //TokenDetails({Key? key, required this.tokenName}) : super(key: key);
   //var tokenName = tokenNameViewmodel;
-  final CmcToken coin;
+  final CmcToken token;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,11 +21,11 @@ class TokenDetails extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              coin.name,
+              token.name,
               style: const TextStyle(color: Colors.black),
             ),
             Text(
-              '\$' + formatter.format(coin.price),
+              '\$' + formatter.format(token.price),
               style: const TextStyle(color: Colors.black),
             ),
           ],
@@ -33,21 +34,25 @@ class TokenDetails extends ConsumerWidget {
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Card(
                     child: Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all(12.0.h),
                   child: Column(
                     children: [
-                      const Text('Total Supply'),
-                      const SizedBox(height: 12),
                       Text(
-                        formatter.format(coin.totalSupply),
+                        'Total Supply',
+                        style: TextStyle(fontSize: 24.sp),
+                      ),
+                      SizedBox(height: 12.h),
+                      Text(
+                        formatter.format(token.totalSupply),
                         style: const TextStyle(fontSize: 24),
                       ),
                     ],
@@ -55,27 +60,33 @@ class TokenDetails extends ConsumerWidget {
                 )),
                 Card(
                     child: Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all(12.0.h),
                   child: Column(
                     children: [
-                      const Text('Market Cap'),
-                      const SizedBox(height: 12),
                       Text(
-                        formatter.format(coin.marketCap),
-                        style: const TextStyle(fontSize: 28),
+                        'Market Cap',
+                        style: TextStyle(fontSize: 24.sp),
+                      ),
+                      SizedBox(height: 12.h),
+                      Text(
+                        formatter.format(token.marketCap),
+                        style: const TextStyle(fontSize: 24),
                       ),
                     ],
                   ),
                 )),
                 Card(
                     child: Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: EdgeInsets.all(12.0.h),
                   child: Column(
                     children: [
-                      const Text('Circ. Supply'),
-                      const SizedBox(height: 12),
                       Text(
-                        formatter.format(coin.circulatingSupply),
+                        'Circ. Supply',
+                        style: TextStyle(fontSize: 24.sp),
+                      ),
+                      SizedBox(height: 12.h),
+                      Text(
+                        formatter.format(token.circulatingSupply),
                         style: const TextStyle(fontSize: 24),
                       ),
                     ],
@@ -87,28 +98,28 @@ class TokenDetails extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 detailCard(
-                  coin: coin,
+                  coin: token,
                   detailTitle: 'vol 24 %',
-                  detailValue: coin.volumeChange24,
+                  detailValue: token.volumeChange24,
                 ),
                 detailCard(
-                    coin: coin,
+                    coin: token,
                     detailTitle: '24hrs %',
-                    detailValue: coin.change24)
+                    detailValue: token.change24)
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 detailCard(
-                  coin: coin,
+                  coin: token,
                   detailTitle: '7days %',
-                  detailValue: coin.change7d,
+                  detailValue: token.change7d,
                 ),
                 detailCard(
-                  coin: coin,
+                  coin: token,
                   detailTitle: '30days %',
-                  detailValue: coin.change30d,
+                  detailValue: token.change30d,
                 ),
                 // Card(
                 //   child: Padding(
@@ -157,7 +168,7 @@ detailCard({
         children: [
           Text(detailTitle),
           Text(
-            '${detailValue.toStringAsPrecision(4)}%',
+            '${detailValue.toStringAsFixed(4)}%',
             style: TextStyle(
                 color: detailValue > 0 ? Colors.blue : Colors.red,
                 fontSize: detailValue > 10 ? 28 : 20,
