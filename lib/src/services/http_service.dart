@@ -4,13 +4,10 @@ import 'package:crypto_suggest/src/features/coin/model/cmc_token.dart';
 import 'package:http/http.dart' as http;
 
 abstract class NetworkAbstract {
-  get(
-    String url,
-    //TokenForms toBeDisplayed,
-  );
+  get(String url);
 }
-enum TokenForms { all, losers, gainers }
-///*
+
+
 class HttpService implements NetworkAbstract {
   @override
   Future<dynamic> get(
@@ -22,40 +19,22 @@ class HttpService implements NetworkAbstract {
     return decodedResponse['data'];
   }
   }
-  //*/
-
-/*
-    List<CmcToken> responseList =
-        dataedResponse.map((e) => CmcToken.fromJson(e)).toList();
-
-    switch (toBeDisplayed) {
-      case TokenForms.all:
-        return responseList;
-      case TokenForms.losers:
-        responseList.sort((a, b) => a.change24.compareTo(b.change24));
-        return responseList;
-      case TokenForms.gainers:
-        responseList.sort((a, b) => a.change24.compareTo(b.change24));
-        return responseList.reversed.toList();
-      default:
-        return [];
-    }*/
 
 
-/*
+
 class LocalService implements NetworkAbstract {
   @override
-  List<CmcToken> get(String url, TokenForms toBeDisplayed) {
+  List<CmcToken> get(String url) {
     List coinData = cmcList['data'];
     final coinList = coinData.map((token) => CmcToken.fromJson(token)).toList();
 
-    switch (toBeDisplayed) {
-      case TokenForms.all:
+    switch (url) {
+      case 'all':
         return coinList;
-      case TokenForms.losers:
+      case 'losers':
         coinList.sort((a, b) => a.change24.compareTo(b.change24));
         return coinList;
-      case TokenForms.gainers:
+      case 'gainers':
         coinList.sort((a, b) => a.change24.compareTo(b.change24));
         return coinList.reversed.toList();
       default:
@@ -64,4 +43,3 @@ class LocalService implements NetworkAbstract {
   }
 }
 
-*/

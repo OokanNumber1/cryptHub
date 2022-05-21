@@ -29,6 +29,7 @@
 .packages
 .pub-cache/
 .fvm/
+.vscode/
 .pub/
 /build/
 

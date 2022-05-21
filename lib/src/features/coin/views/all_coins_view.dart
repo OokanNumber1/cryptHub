@@ -17,10 +17,10 @@ Expanded allCoinsView() {
         final allCoinProvider = ref.watch(allCoinViewmodel);
         return allCoinProvider.when(
           data: (tokenList) =>
-              //onRefresh: () => ref.refresh(allCoinViewmodel.future),
               RefreshIndicator(
                 onRefresh: () => ref.refresh(allCoinViewmodel.future),
-                child: ListView.builder(
+                child: 
+                ListView.builder(
                     itemCount: cmcListing['data'].length,
                     itemBuilder: (_, index) => Card(
                           child: ListTile(
@@ -69,16 +69,6 @@ Expanded allCoinsView() {
                                             .contains(tokenList[index])
                                         ? Colors.blue
                                         : Colors.grey,
-              
-                                    // ref
-                                    //         .read(favouriteProvider.notifier)
-                                    //         .favouriteList
-                                    //         .contains(coinList[index])
-                                    //     ? Icons.favorite
-                                    //     : Icons.favorite_border,
-                                    // color: coinList[index].isFavourite
-                                    //     ? Colors.yellow
-                                    //     : Colors.transparent,
                                   ),
                                 )
                               ],

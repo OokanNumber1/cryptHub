@@ -11,9 +11,11 @@ Expanded losersView() {
       //final losersProvider = ref.watch(losersLocalVM);
       final losersProvider = ref.watch(losersViewmodel);
       return losersProvider.when(
-        data: (loserList) => RefreshIndicator(
+        data: (loserList) =>
+         RefreshIndicator(
           onRefresh: ()=>ref.refresh(losersViewmodel.future),
-          child: ListView.builder(
+          child: 
+          ListView.builder(
             itemCount: loserList.length,
             itemBuilder: (context, index) => ListTile(
               onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => TokenDetails(token: loserList[index]),)),

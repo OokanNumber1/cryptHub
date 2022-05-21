@@ -12,19 +12,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /*
 final allCoinLocalVM = FutureProvider<List<CmcToken>>((ref) {
-  return LocalService().get('', TokenForms.all);
+  return LocalService().get('all');
 });
 final gainersLocalVM = FutureProvider<List<CmcToken>>(
-    (ref) => LocalService().get('', TokenForms.gainers));
+    (ref) => LocalService().get('gainers'));
 final losersLocalVM = FutureProvider<List<CmcToken>>(
-    (ref) => LocalService().get('', TokenForms.losers));
-
+    (ref) => LocalService().get('losers'));
 */
 
 
 final localStorage = LocalStorage(storage: GetStorage());
 //final prefStorage = LocalStoragePrefs();
-///*
+
 const tokensKey = 'tokens';
 final allCoinViewmodel = FutureProvider<List<CmcToken>>((ref) async {
   if (await InternetConnectionChecker().hasConnection) {
@@ -98,4 +97,3 @@ final losersViewmodel = FutureProvider((ref) async {
 });
 
 
-//*/

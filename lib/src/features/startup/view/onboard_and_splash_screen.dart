@@ -1,5 +1,4 @@
-import 'package:crypto_suggest/root.dart';
-import 'package:crypto_suggest/src/features/onboard_and_splash/viewmodel/onboard_viewmodel.dart';
+import 'package:crypto_suggest/src/features/startup/viewmodel/onboard_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -34,8 +33,8 @@ class OnboardView extends ConsumerWidget {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(height: 24),
+                          children: const [
+                             SizedBox(height: 24),
                             Text(
                               'Ease Your Crypto Analysis on Top 100 Tokens With a Easier View of Market Cap, Total Supply, Circulating Supply and Many more Token Info.',
                               textAlign: TextAlign.center,
@@ -46,9 +45,8 @@ class OnboardView extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: const [
-                            //Image.asset('name'),
-                            const SizedBox(height: 24),
-                            const Text(
+                             SizedBox(height: 24),
+                             Text(
                               'Get To View Favourited Tokens Even When You Are Offline.',
                               textAlign: TextAlign.center,
                             ),
@@ -96,15 +94,4 @@ class OnboardView extends ConsumerWidget {
   }
 }
 
-class SplashView extends StatelessWidget {
-  const SplashView({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Image.asset('images/appicon.png'),
-      ),
-    );
-  }
-}

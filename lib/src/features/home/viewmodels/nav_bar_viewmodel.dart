@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 //   int _index = 0;
 //   int get index => _index;
 
-// navigate(int index) {
+// void navigate(int index) {
 //   print('before navigate is pressed => $_index');
 //   _index = index;
 //   print('after navigate is pressed =>$_index');
@@ -17,7 +17,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class NavBarViewModel extends StateNotifier<int> {
   NavBarViewModel() : super(0);
 
-  navigate(int index) {
+ void navigate(int index) {
     state = index;
   }
 }

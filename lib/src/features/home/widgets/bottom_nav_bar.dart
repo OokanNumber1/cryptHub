@@ -1,5 +1,5 @@
 import 'package:crypto_suggest/src/constants/app_dimensions.dart';
-import 'package:crypto_suggest/src/features/bottom_nav_bar/viewmodels/nav_bar_viewmodel.dart';
+import 'package:crypto_suggest/src/features/home/viewmodels/nav_bar_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

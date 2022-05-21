@@ -13,8 +13,7 @@ class MyFAB extends StatelessWidget {
     return FloatingActionButton(
       onPressed: () {
         showSearch(context: context, delegate: CustomSearchDelegate());
-        // showDialog(
-        //     context: context, builder: (context) => const SearchDialog());
+
       },
       child: const Icon(Icons.search),
     );
@@ -39,10 +38,6 @@ class SearchDialog extends StatelessWidget {
       content:  SizedBox(
           height: MediaQuery.of(context).size.height * 0.56,
           width: double.infinity,
-          //padding: const EdgeInsets.all(20),
-          // decoration: BoxDecoration(
-          //   borderRadius: BorderRadius.circular(20), border: Border.all(width: 2, color: Colors.blue)
-          // ),
           child: Consumer(
             builder: (context, ref, child) {
               //final allCoinProvider = ref.watch(allCoinLocalVM);
@@ -59,7 +54,6 @@ class SearchDialog extends StatelessWidget {
                                   ),
                             )
                             .toList());
-                    //resultSearchTokens = suggestedSearchTokens;
                     return ListView.builder(
                       itemBuilder: (context, index) => ListTile(
                           onTap: () => Navigator.push(
@@ -82,7 +76,6 @@ class SearchDialog extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       ));
             },
-            //child:
           )),
     );
   }
@@ -110,7 +103,6 @@ class CustomSearchDelegate extends SearchDelegate<CmcToken> {
 
   @override
   Widget buildResults(BuildContext context) {
-    //List<CmcToken> suggestedSearchTokens = [];
     return ListView.builder(
       itemBuilder: (context, index) => ListTile(
         title: Text(resultSearchTokens[index].name),
@@ -161,7 +153,6 @@ class CustomSearchDelegate extends SearchDelegate<CmcToken> {
                   child: CircularProgressIndicator(),
                 ));
       },
-      //child:
     );
   }
 }

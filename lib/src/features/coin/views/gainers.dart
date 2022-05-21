@@ -12,9 +12,11 @@ Expanded gainersView() {
         //final gainersProvider = ref.watch(gainersLocalVM);
         final gainersProvider = ref.watch(gainersViewmodel);
         return gainersProvider.when(
-            data: (gainerList) => RefreshIndicator(
+            data: (gainerList) => 
+            RefreshIndicator(
               onRefresh: () => ref.refresh(gainersViewmodel.future),
-              child: ListView.builder(
+              child: 
+            ListView.builder(
                   itemCount: gainerList.length,
                   itemBuilder: (context, index) {
                     return ListTile(

@@ -1,15 +1,44 @@
-import 'package:crypto_suggest/src/features/category/views/category_view.dart';
+import 'package:crypto_suggest/src/constants/app_strings.dart';
+import 'package:crypto_suggest/src/features/home/viewmodels/nav_bar_viewmodel.dart';
+import 'package:crypto_suggest/src/features/home/views/dashboard.dart';
+import 'package:crypto_suggest/src/features/home/widgets/bottom_nav_bar.dart';
+import 'package:crypto_suggest/src/features/dapp/views/dapp_view.dart';
+import 'package:crypto_suggest/src/features/discover/views/discover_view.dart';
+import 'package:crypto_suggest/src/features/favourites/viewmodel/favourite_viewmodel.dart';
+import 'package:crypto_suggest/src/features/favourites/views/favourites_view.dart';
+import 'package:crypto_suggest/src/features/home/widgets/floating_action_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends ConsumerWidget {
   const HomeView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 18.0.sp),
-      child: const CategoryChip(),
-    );
+  Widget build(BuildContext context, WidgetRef ref) {
+    /// to get access to the favouriteList at the lauch of the app
+ref.read(favouriteChangeViewmodel).getfavouriteList();
+    final navigationViews = [
+      const Dashboard(),
+      const FavouritesView(),
+      const DiscoverView(),
+      const DappView(),
+    ];
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            AppStrings.appName,
+            style: TextStyle(color: Colors.black),
+          ),
+          backgroundColor: Colors.white24,
+          centerTitle: true,
+          elevation: 0,
+        ),
+        body: Consumer(
+          builder: (context, ref, child) =>
+              navigationViews[ref.watch(navBarProvider)],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: const MyFAB(),
+        bottomNavigationBar: const BottomNavBar(),);
   }
 }
