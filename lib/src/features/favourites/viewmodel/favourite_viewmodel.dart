@@ -72,21 +72,22 @@ class FavouriteChangeNotifier extends ChangeNotifier {
   late List<CmcToken>? favouriteLclList;
 
   List<CmcToken>? getfavouriteList() {
-    var fromLcl =  localStorage.read(key: 'favKey') ;
+    var fromLcl = localStorage.read(key: 'favKey');
     //final fromLcl =  prefStorage.read(key: 'favKey') ;
     if (fromLcl != null) {
-       List decoded = fromLcl;
+      List decoded = fromLcl;
       favouriteLclList =
-         decoded.map((token) => CmcToken.fromLocal(token)).toList();
-          //print('favouriteLclList ===>>>>>>======>>> $favouriteLclList');
+          decoded.map((token) => CmcToken.fromLocal(token)).toList();
+      //print('favouriteLclList ===>>>>>>======>>> $favouriteLclList');
       return favouriteLclList;
     }
     favouriteLclList = [];
     return [];
   }
+
   Future<void> favouriteAction(CmcToken token) async {
     Set<CmcToken> lclFaveSet = favouriteLclList!.toSet();
-      lclFaveSet.contains(token)
+    lclFaveSet.contains(token)
         ? lclFaveSet.remove(token)
         : lclFaveSet.add(token);
     favouriteLclList = lclFaveSet.toList();
@@ -94,6 +95,7 @@ class FavouriteChangeNotifier extends ChangeNotifier {
     notifyListeners();
   }
 }
+
 //! Gives error when i hot reload on the favourite page
 final favouriteChangeViewmodel =
     ChangeNotifierProvider((ref) => FavouriteChangeNotifier());

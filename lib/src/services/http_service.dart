@@ -7,7 +7,6 @@ abstract class NetworkAbstract {
   get(String url);
 }
 
-
 class HttpService implements NetworkAbstract {
   @override
   Future<dynamic> get(
@@ -18,9 +17,7 @@ class HttpService implements NetworkAbstract {
 
     return decodedResponse['data'];
   }
-  }
-
-
+}
 
 class LocalService implements NetworkAbstract {
   @override
@@ -42,4 +39,3 @@ class LocalService implements NetworkAbstract {
     }
   }
 }
-

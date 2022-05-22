@@ -13,7 +13,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // }
 
 class OnboardNotifier extends ChangeNotifier {
-
   PageController onboardController = PageController();
 
   int onboardIndex = 0;

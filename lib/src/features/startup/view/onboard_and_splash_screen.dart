@@ -34,7 +34,7 @@ class OnboardView extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: const [
-                             SizedBox(height: 24),
+                            SizedBox(height: 24),
                             Text(
                               'Ease Your Crypto Analysis on Top 100 Tokens With a Easier View of Market Cap, Total Supply, Circulating Supply and Many more Token Info.',
                               textAlign: TextAlign.center,
@@ -45,8 +45,8 @@ class OnboardView extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: const [
-                             SizedBox(height: 24),
-                             Text(
+                            SizedBox(height: 24),
+                            Text(
                               'Get To View Favourited Tokens Even When You Are Offline.',
                               textAlign: TextAlign.center,
                             ),
@@ -93,5 +93,3 @@ class OnboardView extends ConsumerWidget {
     );
   }
 }
-
-

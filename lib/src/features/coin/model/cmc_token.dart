@@ -15,16 +15,16 @@ class CmcToken {
   //   required this.volumeChange24,
   // });
   String symbol;
-   String name;
+  String name;
   int rank;
 
-  num circulatingSupply; 
-  num totalSupply; 
-  num volumeChange24; 
+  num circulatingSupply;
+  num totalSupply;
+  num volumeChange24;
   num change30d;
-  double price; 
-  double change24; 
-  double change7d; 
+  double price;
+  double change24;
+  double change7d;
   double marketCap;
   CmcToken({
     required this.symbol,
@@ -86,6 +86,40 @@ class CmcToken {
         circulatingSupply: json['circulatingSupply'],
         volumeChange24: json['volumeChange24']);
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is CmcToken &&
+        other.symbol == symbol &&
+        other.name == name &&
+        other.rank == rank &&
+        other.circulatingSupply == circulatingSupply &&
+        other.totalSupply == totalSupply &&
+        other.volumeChange24 == volumeChange24 &&
+        other.change30d == change30d &&
+        other.price == price &&
+        other.change24 == change24 &&
+        other.change7d == change7d &&
+        other.marketCap == marketCap;
+  }
+
+  @override
+  int get hashCode {
+    return symbol.hashCode ^
+        name.hashCode ^
+        rank.hashCode ^
+        circulatingSupply.hashCode ^
+        totalSupply.hashCode ^
+        volumeChange24.hashCode ^
+        change30d.hashCode ^
+        price.hashCode ^
+        change24.hashCode ^
+        change7d.hashCode ^
+        marketCap.hashCode;
+  }
+}
   /*
 
   CmcToken copyWith({
@@ -158,36 +192,3 @@ class CmcToken {
   }
   */
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-  
-    return other is CmcToken &&
-      other.symbol == symbol &&
-      other.name == name &&
-      other.rank == rank &&
-      other.circulatingSupply == circulatingSupply &&
-      other.totalSupply == totalSupply &&
-      other.volumeChange24 == volumeChange24 &&
-      other.change30d == change30d &&
-      other.price == price &&
-      other.change24 == change24 &&
-      other.change7d == change7d &&
-      other.marketCap == marketCap;
-  }
-
-  @override
-  int get hashCode {
-    return symbol.hashCode ^
-      name.hashCode ^
-      rank.hashCode ^
-      circulatingSupply.hashCode ^
-      totalSupply.hashCode ^
-      volumeChange24.hashCode ^
-      change30d.hashCode ^
-      price.hashCode ^
-      change24.hashCode ^
-      change7d.hashCode ^
-      marketCap.hashCode;
-  }
-}

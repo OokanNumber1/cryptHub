@@ -17,7 +17,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class NavBarViewModel extends StateNotifier<int> {
   NavBarViewModel() : super(0);
 
- void navigate(int index) {
+  void navigate(int index) {
     state = index;
   }
 }

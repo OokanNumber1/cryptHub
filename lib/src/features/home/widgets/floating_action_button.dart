@@ -13,7 +13,6 @@ class MyFAB extends StatelessWidget {
     return FloatingActionButton(
       onPressed: () {
         showSearch(context: context, delegate: CustomSearchDelegate());
-
       },
       child: const Icon(Icons.search),
     );
@@ -35,7 +34,7 @@ class SearchDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: const BorderSide(width: 2, color: Colors.blue)),
-      content:  SizedBox(
+      content: SizedBox(
           height: MediaQuery.of(context).size.height * 0.56,
           width: double.infinity,
           child: Consumer(
@@ -124,11 +123,9 @@ class CustomSearchDelegate extends SearchDelegate<CmcToken> {
               query.isEmpty
                   ? allCoinList
                   : suggestedSearchTokens.addAll(allCoinList
-                      .where(
-                        (element) => element.name.toLowerCase().contains(
-                              query.toLowerCase(),
-                            ),
-                      )
+                      .where((element) => element.name.toLowerCase().contains(
+                            query.toLowerCase(),
+                          ))
                       .toList());
               resultSearchTokens = suggestedSearchTokens;
               return ListView.builder(

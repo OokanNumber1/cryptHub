@@ -16,66 +16,64 @@ Expanded allCoinsView() {
         //final allCoinProvider = ref.watch(allCoinLocalVM);
         final allCoinProvider = ref.watch(allCoinViewmodel);
         return allCoinProvider.when(
-          data: (tokenList) =>
-              RefreshIndicator(
-                onRefresh: () => ref.refresh(allCoinViewmodel.future),
-                child: 
-                ListView.builder(
-                    itemCount: cmcListing['data'].length,
-                    itemBuilder: (_, index) => Card(
-                          child: ListTile(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => TokenDetails(
-                                    token: tokenList[index],
-                                  ),
-                                ),
-                              );
-                            },
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.r),
+          data: (tokenList) => RefreshIndicator(
+            onRefresh: () => ref.refresh(allCoinViewmodel.future),
+            child: ListView.builder(
+                itemCount: cmcListing['data'].length,
+                itemBuilder: (_, index) => Card(
+                      child: ListTile(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TokenDetails(
+                                token: tokenList[index],
+                              ),
                             ),
-                            leading: Text(tokenList[index].rank.toString()),
-                            title: Text(tokenList[index].name),
-                            subtitle: Row(
-                              children: [
-                                Text(
-                                    '\$${formatter.format((tokenList[index].price))}'),
-                              ],
-                            ),
-                            trailing: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(tokenList[index].symbol),
-                                GestureDetector(
-                                  onTap: () {
-                                    ref
-                                        .read(favouriteChangeViewmodel)
-                                        //.read(favouriteProvider.notifier)
-                                        .favouriteAction(tokenList[index]);
-                                  },
-                                  child: Icon(
-                                    ref
-                                            .watch(favouriteChangeViewmodel)
-                                            .favouriteLclList!
-                                            .contains(tokenList[index])
-                                        ? Icons.favorite
-                                        : Icons.favorite_border,
-                                    color: ref
-                                            .watch(favouriteChangeViewmodel)
-                                            .favouriteLclList!
-                                            .contains(tokenList[index])
-                                        ? Colors.blue
-                                        : Colors.grey,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        )),
-              ),
+                          );
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        leading: Text(tokenList[index].rank.toString()),
+                        title: Text(tokenList[index].name),
+                        subtitle: Row(
+                          children: [
+                            Text(
+                                '\$${formatter.format((tokenList[index].price))}'),
+                          ],
+                        ),
+                        trailing: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(tokenList[index].symbol),
+                            GestureDetector(
+                              onTap: () {
+                                ref
+                                    .read(favouriteChangeViewmodel)
+                                    //.read(favouriteProvider.notifier)
+                                    .favouriteAction(tokenList[index]);
+                              },
+                              child: Icon(
+                                ref
+                                        .watch(favouriteChangeViewmodel)
+                                        .favouriteLclList!
+                                        .contains(tokenList[index])
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                color: ref
+                                        .watch(favouriteChangeViewmodel)
+                                        .favouriteLclList!
+                                        .contains(tokenList[index])
+                                    ? Colors.blue
+                                    : Colors.grey,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )),
+          ),
           error: (error, stck) => Text('$error'),
           loading: () => const Center(child: CircularProgressIndicator()),
         );

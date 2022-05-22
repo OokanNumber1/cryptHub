@@ -16,7 +16,7 @@ class HomeView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     /// to get access to the favouriteList at the lauch of the app
-ref.read(favouriteChangeViewmodel).getfavouriteList();
+    ref.read(favouriteChangeViewmodel).getfavouriteList();
     final navigationViews = [
       const Dashboard(),
       const FavouritesView(),
@@ -24,21 +24,22 @@ ref.read(favouriteChangeViewmodel).getfavouriteList();
       const DappView(),
     ];
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            AppStrings.appName,
-            style: TextStyle(color: Colors.black),
-          ),
-          backgroundColor: Colors.white24,
-          centerTitle: true,
-          elevation: 0,
+      appBar: AppBar(
+        title: const Text(
+          AppStrings.appName,
+          style: TextStyle(color: Colors.black),
         ),
-        body: Consumer(
-          builder: (context, ref, child) =>
-              navigationViews[ref.watch(navBarProvider)],
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: const MyFAB(),
-        bottomNavigationBar: const BottomNavBar(),);
+        backgroundColor: Colors.white24,
+        centerTitle: true,
+        elevation: 0,
+      ),
+      body: Consumer(
+        builder: (context, ref, child) =>
+            navigationViews[ref.watch(navBarProvider)],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: const MyFAB(),
+      bottomNavigationBar: const BottomNavBar(),
+    );
   }
 }

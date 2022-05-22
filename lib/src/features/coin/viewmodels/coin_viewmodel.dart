@@ -20,7 +20,6 @@ final losersLocalVM = FutureProvider<List<CmcToken>>(
     (ref) => LocalService().get('losers'));
 */
 
-
 final localStorage = LocalStorage(storage: GetStorage());
 //final prefStorage = LocalStoragePrefs();
 
@@ -95,5 +94,3 @@ final losersViewmodel = FutureProvider((ref) async {
     return loserLst;
   }
 });
-
-

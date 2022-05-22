@@ -6,24 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class CryptoSuggest extends ConsumerWidget {
   const CryptoSuggest({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return  ScreenUtilInit(
+    return ScreenUtilInit(
       designSize: const Size(720, 1080),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: ref.watch(onboardProvider).onboardViewed ? const HomeView() : const OnboardView(),
+        home: ref.watch(onboardProvider).onboardViewed
+            ? const HomeView()
+            : const OnboardView(),
         title: AppStrings.appName,
       ),
     );
   }
 }
-
-
-
-
-

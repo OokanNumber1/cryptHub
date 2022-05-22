@@ -58,22 +58,23 @@ class TokenDetails extends ConsumerWidget {
                   ),
                 )),
                 Card(
-                    child: Padding(
-                  padding: EdgeInsets.all(12.0.h),
-                  child: Column(
-                    children: [
-                      Text(
-                        'Market Cap',
-                        style: TextStyle(fontSize: 24.sp),
-                      ),
-                      SizedBox(height: 12.h),
-                      Text(
-                        formatter.format(token.marketCap),
-                        style: const TextStyle(fontSize: 24),
-                      ),
-                    ],
+                  child: Padding(
+                    padding: EdgeInsets.all(12.0.h),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Market Cap',
+                          style: TextStyle(fontSize: 24.sp),
+                        ),
+                        SizedBox(height: 12.h),
+                        Text(
+                          formatter.format(token.marketCap),
+                          style: const TextStyle(fontSize: 24),
+                        ),
+                      ],
+                    ),
                   ),
-                )),
+                ),
                 Card(
                     child: Padding(
                   padding: EdgeInsets.all(12.0.h),
@@ -128,6 +129,3 @@ class TokenDetails extends ConsumerWidget {
     );
   }
 }
-
-
-

@@ -11,14 +11,16 @@ Expanded losersView() {
       //final losersProvider = ref.watch(losersLocalVM);
       final losersProvider = ref.watch(losersViewmodel);
       return losersProvider.when(
-        data: (loserList) =>
-         RefreshIndicator(
-          onRefresh: ()=>ref.refresh(losersViewmodel.future),
-          child: 
-          ListView.builder(
+        data: (loserList) => RefreshIndicator(
+          onRefresh: () => ref.refresh(losersViewmodel.future),
+          child: ListView.builder(
             itemCount: loserList.length,
             itemBuilder: (context, index) => ListTile(
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => TokenDetails(token: loserList[index]),)),
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => TokenDetails(token: loserList[index]),
+                  )),
               title: Text(loserList[index].name),
               trailing: Text(
                 loserList[index].change24.toStringAsFixed(3) + '%',
@@ -35,6 +37,5 @@ Expanded losersView() {
         loading: () => const Center(child: CircularProgressIndicator()),
       );
     },
-  )
-      );
+  ));
 }
