@@ -1,5 +1,4 @@
-import 'package:crypto_suggest/src/constants/cmc_new_response.dart';
-import 'package:crypto_suggest/src/constants/cmc_response.dart';
+import 'package:crypto_suggest/src/fixtures/cmc_new_response.dart';
 import 'package:crypto_suggest/src/features/coin/viewmodels/coin_viewmodel.dart';
 import 'package:crypto_suggest/src/features/coin/views/coin_details_view.dart';
 import 'package:flutter/material.dart';

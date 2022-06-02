@@ -1,41 +1,25 @@
 import 'dart:convert';
-import 'package:crypto_suggest/src/constants/cmc_new_response.dart';
-import 'package:crypto_suggest/src/features/coin/model/cmc_token.dart';
+import 'package:crypto_suggest/src/services/storage_service.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 abstract class NetworkAbstract {
-  get(String url);
+dynamic get(String url);
 }
 
 class HttpService implements NetworkAbstract {
+
   @override
-  Future<dynamic> get(
-    String url,
-  ) async {
+  dynamic get(String url) async {
+    final localStorage = LocalStorage(storage: GetStorage());
     final networkResponse = await http.get(Uri.parse(url));
     final decodedResponse = jsonDecode(networkResponse.body);
-
+    await localStorage.save(key: 'tokens', value: decodedResponse);
     return decodedResponse['data'];
   }
 }
 
-class LocalService implements NetworkAbstract {
-  @override
-  List<CmcToken> get(String url) {
-    List coinData = cmcList['data'];
-    final coinList = coinData.map((token) => CmcToken.fromJson(token)).toList();
-
-    switch (url) {
-      case 'all':
-        return coinList;
-      case 'losers':
-        coinList.sort((a, b) => a.change24.compareTo(b.change24));
-        return coinList;
-      case 'gainers':
-        coinList.sort((a, b) => a.change24.compareTo(b.change24));
-        return coinList.reversed.toList();
-      default:
-        return [];
-    }
-  }
-}
+final networkService = Provider<NetworkAbstract>((ref){
+  return HttpService();
+});

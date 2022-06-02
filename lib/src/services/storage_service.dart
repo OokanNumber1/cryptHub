@@ -24,6 +24,8 @@ class LocalStorage implements IStorageService {
   }
 }
 
+final localStorage = LocalStorage(storage: GetStorage());
+
 // class LocalStoragePrefs{
 
 //   T? read<T>({required String key}) async{

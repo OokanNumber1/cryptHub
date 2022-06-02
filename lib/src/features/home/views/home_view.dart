@@ -2,10 +2,8 @@ import 'package:crypto_suggest/src/constants/app_strings.dart';
 import 'package:crypto_suggest/src/features/home/viewmodels/nav_bar_viewmodel.dart';
 import 'package:crypto_suggest/src/features/home/views/dashboard.dart';
 import 'package:crypto_suggest/src/features/home/widgets/bottom_nav_bar.dart';
-import 'package:crypto_suggest/src/features/dapp/views/dapp_view.dart';
-import 'package:crypto_suggest/src/features/discover/views/discover_view.dart';
-import 'package:crypto_suggest/src/features/favourites/viewmodel/favourite_viewmodel.dart';
-import 'package:crypto_suggest/src/features/favourites/views/favourites_view.dart';
+import 'package:crypto_suggest/src/features/favourites_token/viewmodel/favourite_viewmodel.dart';
+import 'package:crypto_suggest/src/features/favourites_token/views/favourites_view.dart';
 import 'package:crypto_suggest/src/features/home/widgets/floating_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,9 +17,7 @@ class HomeView extends ConsumerWidget {
     ref.read(favouriteChangeViewmodel).getfavouriteList();
     final navigationViews = [
       const Dashboard(),
-      const FavouritesView(),
-      const DiscoverView(),
-      const DappView(),
+      const FavouritesTokenView(),
     ];
     return Scaffold(
       appBar: AppBar(
