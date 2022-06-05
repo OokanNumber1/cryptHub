@@ -1,5 +1,5 @@
-import 'package:crypto_suggest/src/features/coin/viewmodels/coin_viewmodel.dart';
-import 'package:flutter/widgets.dart';
+import 'package:crypto_suggest/src/services/storage_service.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // class OnboardNotifier extends StateNotifier<int>{

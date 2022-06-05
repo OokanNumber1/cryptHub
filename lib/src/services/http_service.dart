@@ -15,6 +15,7 @@ class HttpService implements NetworkAbstract {
     final localStorage = LocalStorage(storage: GetStorage());
     final networkResponse = await http.get(Uri.parse(url));
     final decodedResponse = jsonDecode(networkResponse.body);
+
     await localStorage.save(key: 'tokens', value: decodedResponse);
     return decodedResponse['data'];
   }

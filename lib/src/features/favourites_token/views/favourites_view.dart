@@ -13,7 +13,7 @@ class FavouritesTokenView extends StatelessWidget {
         // final favouriteList = ref.read(favouriteProvider.notifier).getfavouriteList() ??[];
         //     final favoriteListState = ref.watch(favouriteProvider);
         final favouriteList =
-            ref.watch(favouriteChangeViewmodel).favouriteLclList;
+            ref.watch(favouriteChangeViewmodel).favouriteLocalList;
         return favouriteList!.isEmpty
             ? const Center(
                 child: Text('No Favourite Items Yet,'),

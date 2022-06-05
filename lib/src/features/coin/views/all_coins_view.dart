@@ -57,13 +57,13 @@ Expanded allCoinsView() {
                               child: Icon(
                                 ref
                                         .watch(favouriteChangeViewmodel)
-                                        .favouriteLclList!
+                                        .favouriteLocalList!
                                         .contains(tokenList[index])
                                     ? Icons.favorite
                                     : Icons.favorite_border,
                                 color: ref
                                         .watch(favouriteChangeViewmodel)
-                                        .favouriteLclList!
+                                        .favouriteLocalList!
                                         .contains(tokenList[index])
                                     ? Colors.blue
                                     : Colors.grey,

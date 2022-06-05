@@ -13,7 +13,7 @@ class HomeView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    /// to get access to the favouriteList at the lauch of the app
+    /// to get access to the favouriteLocalList at the lauch of the app
     ref.read(favouriteChangeViewmodel).getfavouriteList();
     final navigationViews = [
       const Dashboard(),

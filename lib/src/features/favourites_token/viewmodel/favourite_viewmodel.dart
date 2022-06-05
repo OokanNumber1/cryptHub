@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:crypto_suggest/src/features/coin/model/cmc_token.dart';
 import 'package:crypto_suggest/src/features/coin/viewmodels/coin_viewmodel.dart';
+import 'package:crypto_suggest/src/services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -69,29 +71,30 @@ final favouriteProvider =
 class FavouriteChangeNotifier extends ChangeNotifier {
   final favLocalStorage = localStorage;
   //final favLocalStorage = prefStorage;
-  late List<CmcToken>? favouriteLclList;
+  late List<CmcToken>? favouriteLocalList;
 
   List<CmcToken>? getfavouriteList() {
     var fromLcl = localStorage.read(key: 'favKey');
+    log(fromLcl.toString());
     //final fromLcl =  prefStorage.read(key: 'favKey') ;
     if (fromLcl != null) {
       List decoded = fromLcl;
-      favouriteLclList =
+      favouriteLocalList =
           decoded.map((token) => CmcToken.fromLocal(token)).toList();
       //print('favouriteLclList ===>>>>>>======>>> $favouriteLclList');
-      return favouriteLclList;
+      return favouriteLocalList;
     }
-    favouriteLclList = [];
+    favouriteLocalList = [];
     return [];
   }
 
   Future<void> favouriteAction(CmcToken token) async {
-    Set<CmcToken> lclFaveSet = favouriteLclList!.toSet();
+    Set<CmcToken> lclFaveSet = favouriteLocalList!.toSet();
     lclFaveSet.contains(token)
         ? lclFaveSet.remove(token)
         : lclFaveSet.add(token);
-    favouriteLclList = lclFaveSet.toList();
-    await localStorage.save(key: 'favKey', value: favouriteLclList);
+    favouriteLocalList = lclFaveSet.toList();
+    await localStorage.save(key: 'favKey', value: favouriteLocalList);
     notifyListeners();
   }
 }

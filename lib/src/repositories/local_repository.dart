@@ -1,3 +1,4 @@
+import 'package:crypto_suggest/src/constants/app_strings.dart';
 import 'package:crypto_suggest/src/features/coin/model/cmc_token.dart';
 import 'package:crypto_suggest/src/fixtures/cmc_new_response.dart';
 import 'package:crypto_suggest/src/services/storage_service.dart';
@@ -21,14 +22,30 @@ class LocalRepository {
     }
   }
 
- Future<List<CmcToken>> loadFromLocal()async{
-    const tokensKey = 'tokens';
-    final lclToken = await localStorage.read(key: tokensKey);
+  Future<List<CmcToken>> loadAllTokenFromLocal() async {
+    final lclToken = await localStorage.read(key: AppStrings.tokensKey);
 
     List storageList = lclToken.toList();
     List<CmcToken> strList =
         storageList.map((e) => CmcToken.fromJson(e)).toList();
 
     return strList;
+  }
+
+  Future<List<CmcToken>> loadGainerTokenFromLocal() async {
+    final lclToken = await localStorage.read(key: AppStrings.tokensKey);
+    List storageList = lclToken.toList();
+    List<CmcToken> strList =
+        storageList.map((e) => CmcToken.fromJson(e)).toList();
+    strList.sort((a, b) => a.change24.compareTo(b.change24));
+    return strList.reversed.toList();
+  }
+
+  Future<List<CmcToken>> loadLoserTokenFromLocal() async {
+    final losers = await localStorage.read(key: AppStrings.tokensKey) as List;
+    List<CmcToken> lslst = losers.map((e) => CmcToken.fromJson(e)).toList();
+    lslst.sort((a, b) => a.change24.compareTo(b.change24));
+    List<CmcToken> loserLst = lslst;
+    return loserLst;
   }
 }
