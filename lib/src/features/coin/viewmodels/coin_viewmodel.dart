@@ -1,6 +1,8 @@
 import 'package:crypto_suggest/src/repositories/local_repository.dart';
 import 'package:crypto_suggest/src/repositories/token_repository.dart';
+import 'package:crypto_suggest/src/services/storage_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:crypto_suggest/src/constants/app_strings.dart';
 import 'package:crypto_suggest/src/features/coin/model/cmc_token.dart';
@@ -18,7 +20,7 @@ final losersLocalVM =
 
 final allCoinViewmodel = FutureProvider<List<CmcToken>>((ref) async {
   if (await InternetConnectionChecker().hasConnection) {
-    return TokenRepository(networkService: HttpService())
+    return TokenRepository(networkService: HttpService(),storageService: LocalStorage(storage: GetStorage()))
         .getAllTokens(AppStrings.coinUrl!);
   } else {
     return LocalRepository().loadAllTokenFromLocal();
@@ -27,7 +29,7 @@ final allCoinViewmodel = FutureProvider<List<CmcToken>>((ref) async {
 
 final gainersViewmodel = FutureProvider((ref) async {
   if (await InternetConnectionChecker().hasConnection) {
-    return TokenRepository(networkService: HttpService())
+    return TokenRepository(networkService: HttpService(),storageService: LocalStorage(storage: GetStorage()))
         .getGainerTokens(AppStrings.coinUrl!);
   } else {
     return LocalRepository().loadGainerTokenFromLocal();
@@ -36,7 +38,7 @@ final gainersViewmodel = FutureProvider((ref) async {
 
 final losersViewmodel = FutureProvider((ref) async {
   if (await InternetConnectionChecker().hasConnection) {
-    return TokenRepository(networkService: HttpService())
+    return TokenRepository(networkService: HttpService(), storageService: LocalStorage(storage: GetStorage()))
         .getLoserTokens(AppStrings.coinUrl!);
   } else {
     return LocalRepository().loadLoserTokenFromLocal();

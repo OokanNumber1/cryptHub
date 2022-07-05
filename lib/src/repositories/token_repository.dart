@@ -4,12 +4,13 @@ import 'package:crypto_suggest/src/services/http_service.dart';
 import 'package:crypto_suggest/src/services/storage_service.dart';
 
 class TokenRepository {
-  const TokenRepository({required this.networkService});
-  final NetworkAbstract networkService;
+  const TokenRepository({required this.networkService, required this.storageService});
+  final IHttpService networkService;
+  final IStorageService storageService;
 
   Future<List<CmcToken>> getAllTokens(String url) async {
     List decodedResponse = await networkService.get(url);
-    await localStorage.save(key: AppStrings.tokensKey, value: decodedResponse);
+    await storageService.save(key: AppStrings.tokensKey, value: decodedResponse);
     List<CmcToken> serialisedResponse =
         decodedResponse.map((token) => CmcToken.fromJson(token)).toList();
     return serialisedResponse;
