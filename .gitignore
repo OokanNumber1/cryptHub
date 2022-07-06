@@ -33,6 +33,7 @@
 .pub/
 /build/
 .env
+/lib/src/
 
 # Web related
 lib/generated_plugin_registrant.dart
