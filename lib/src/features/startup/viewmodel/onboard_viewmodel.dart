@@ -3,17 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:crypto_suggest/src/services/storage_service.dart';
 import 'package:get_storage/get_storage.dart';
-///import 'package:get_storage/get_storage.dart';
-
-// class OnboardNotifier extends StateNotifier<int>{
-//    OnboardNotifier() : super (0) ;
-
-//    void checkIndex(){
-//      if (state == 1){
-//        //final strg = ref
-//      }
-//    }
-// }
 
 class OnboardNotifier extends ChangeNotifier {
   PageController onboardController = PageController();

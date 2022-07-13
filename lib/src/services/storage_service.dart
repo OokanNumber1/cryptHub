@@ -23,19 +23,3 @@ class LocalStorage implements IStorageService {
   }
 }
 
-//final localStorage = LocalStorage(storage: GetStorage());
-
-// class LocalStoragePrefs{
-
-//   T? read<T>({required String key}) async{
-//     final  _prefs = await SharedPreferences.getInstance();
-//    _prefs.getString(key);
-//   }
-
-//   Future<void> save({required String key, required value}) async{
-//     final  _prefs = await SharedPreferences.getInstance();
-//    await _prefs.setString(key, value);
-//   }
-
-// }
-
