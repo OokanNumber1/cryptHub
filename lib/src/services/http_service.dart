@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';
@@ -22,7 +23,10 @@ class HttpService implements IHttpService {
       throw HttpException(httpErr.toString());
     } on FormatException catch (formatErr) {
       throw FormatException(formatErr.toString());
-    } catch (e) {
+    } on TimeoutException{
+      throw TimeoutException('Weak internet access', const Duration(seconds: 20));
+    }
+     catch (e) {
       throw 'An error occured, kindly check back';
     }
   }
