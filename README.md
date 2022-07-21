@@ -1,16 +1,10 @@
-# crypthub
+# Crypto Suggest
+The main use of the app is to provide basic information of crypto tokens rather than get lost in information provided on CoinMarketCap website.
+This app uses data from the CoinMarketCap API, I used Dart to do the sorting of top gainers and losers.
+ 
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## App Features
+<h3>Ability to : </h3>
+<p> [x] view basic information about top 100 crypto tokens based on their market cap.</p>
+<p> [x] favourite tokens.</p>
+<p> [x] search among top 100 tokens to view detail of a particular token. </p>
